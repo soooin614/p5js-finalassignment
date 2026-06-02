@@ -58,7 +58,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 100%;
-    max-width: 840px;
+    max-width: 900px;
     gap: 32px;
     padding-bottom: 40px;
   }
@@ -96,25 +96,21 @@
 
   .cell {
     width: 100%;
-    aspect-ratio: 16 / 9;
-    position: relative;
-    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 12px;
-    background: transparent;
+    overflow: hidden;
+    background: #000000;
   }
 
   .cell iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 200%;
+    width: 400px;
+    height: 300px;
     border: none;
+    display: block;
     overflow: hidden;
-    pointer-events: none;
-    transform-origin: top left;
-    transform: scale(0.5);
   }
 </style>
 </head>
