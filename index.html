@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>p5.js 작품 모음</title>
+<title>p5.js 과제 포트폴리오</title>
 <style>
+ 
   * {
     margin: 0;
     padding: 0;
@@ -16,37 +17,72 @@
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    padding: 24px;
-    background: #f5f5f5;
+    padding: 40px 20px;
+    background: #f8f9fa;
+    font-family: 'Malgun Gothic', sans-serif;
   }
 
-  h1 {
-    margin-bottom: 20px;
-    font-size: 1.6rem;
+
+  header {
+    text-align: center;
+    margin-bottom: 40px;
   }
+
+  header h1 {
+    font-size: 2.2rem;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+  }
+
+  header p {
+    font-size: 1rem;
+    color: #666;
+  }
+
 
   #projects {
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 100%;
-    max-width: 600px;
-    gap: 12px;
+    max-width: 760px;
+    gap: 24px;
   }
 
-  #projects .cell {
+
+  .project-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    text-align: left;
+  }
+
+  .project-card h3 {
+    font-size: 1.05rem;
+    color: #333;
+    margin-bottom: 12px;
+    padding-left: 4px;
+    border-left: 4px solid #4f46e5;
+  }
+
+
+  .cell {
     aspect-ratio: 16 / 9;
     position: relative;
     overflow: hidden;
-    border: 1px solid #ccc;
+    border: 1px solid #cbd5e1;
     border-radius: 8px;
+    background: #fafafa;
   }
 
-  #projects .cell iframe {
+
+  .cell iframe {
     position: absolute;
     top: 0;
     left: 0;
-    width: 600px;
-    height: 400px;
+    width: 200%;
+    height: 200%;
     border: none;
     transform-origin: top left;
     transform: scale(0.5);
@@ -55,21 +91,40 @@
 </head>
 <body>
 
-<h1>나의 p5.js 작품</h1>
+<header>
+  <h1>p5.js 비주얼 포트폴리오</h1>
+  <p>컴퓨터공학전공 | 학번: 202XXXXX | 이름: 윤수인</p>
+</header>
 
 <main id="projects">
-  <div class="cell">
-    <iframe src="sample1/index.html"></iframe>
+  
+  <div class="project-card">
+    <h3>과제 1: 정적 도형 디자인</h3> <div class="cell">
+      <iframe src="sample1/index.html"></iframe>
+    </div>
   </div>
-  <div class="cell">
-    <iframe src="sample4/index.html"></iframe>
+
+  <div class="project-card">
+    <h3>과제 4: 인터랙티브 아트</h3>
+    <div class="cell">
+      <iframe src="sample4/index.html"></iframe>
+    </div>
   </div>
-  <div class="cell">
-    <iframe src="sample2/index.html"></iframe>
+
+  <div class="project-card">
+    <h3>과제 2: 반복과 패턴</h3>
+    <div class="cell">
+      <iframe src="sample2/index.html"></iframe>
+    </div>
   </div>
-  <div class="cell">
-    <iframe src="sample3/index.html"></iframe>
+
+  <div class="project-card">
+    <h3>과제 3: 동적 애니메이션</h3>
+    <div class="cell">
+      <iframe src="sample3/index.html"></iframe>
+    </div>
   </div>
+
 </main>
 
 </body>
