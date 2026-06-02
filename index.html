@@ -111,19 +111,19 @@
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 12px;
-    background: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
   }
 
 
   .cell iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 200%;
     height: 200%;
     border: none;
     overflow: hidden;
-    transform-origin: top left;
+    transform-origin: center left;
     transform: scale(0.5);
   }
 </style>
