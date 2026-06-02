@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>p5.js Interactive Portfolio</title>
 <style>
+  /* 전체 여백 초기화 및 기본 깔끔한 고딕 폰트 적용 */
   * {
     margin: 0;
     padding: 0;
@@ -16,7 +17,10 @@
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
+    /* 수인님 요청: 깔끔한 기본 고딕 서체로 변경 */
     font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+    
+    /* 우주/별빛 감성 배경 */
     background-color: #0b0c10;
     background-image: 
       radial-gradient(circle at 20% 30%, rgba(124, 58, 237, 0.08) 0%, transparent 40%),
@@ -31,6 +35,7 @@
     padding: 60px 20px;
   }
 
+  /* 상단 헤더 영역 */
   header {
     text-align: center;
     margin-bottom: 50px;
@@ -54,15 +59,17 @@
     opacity: 0.85;
   }
 
+  /* 2행 2열 그리드 구조 */
   #projects {
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 100%;
-    max-width: 900px;
+    max-width: 840px;
     gap: 32px;
     padding-bottom: 40px;
   }
 
+  /* 작품 카드 디자인 */
   .project-card {
     background: rgba(22, 28, 45, 0.6);
     backdrop-filter: blur(10px);
@@ -73,6 +80,7 @@
     transition: all 0.3s ease;
   }
 
+  /* 마우스 호버 시 네온 테두리 효과 */
   .project-card:hover {
     border-color: rgba(192, 132, 252, 0.5);
     box-shadow: 0 0 25px rgba(124, 58, 237, 0.2);
@@ -88,29 +96,36 @@
     color: #f3f4f6;
   }
 
+  /* 수인님 요청: Project 01 부분만 다르게 칠할 포인트 색상 스타일 */
   .project-point {
-    color: #f472b6;
+    color: #f472b6; /* 눈에 확 띄는 화사한 핑크 컬러 */
     margin-right: 6px;
     font-weight: 700;
   }
 
+  /* 작품 공간 모서리 꽉 차게 둥글림 최적화 */
   .cell {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    aspect-ratio: 16 / 9;
+    position: relative;
+    overflow: hidden; /* 내부 스크롤바 차단 및 둥근 모서리 고정 */
     border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 12px;
-    overflow: hidden;
+    border-radius: 12px; /* 둥근 모서리가 사방에 완벽 적용됨 */
     background: #000000;
   }
 
+  /* iframe 테두리 곡률 동기화 */
   .cell iframe {
-    width: 400px;
-    height: 300px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
     border: none;
-    display: block;
+    border-radius: 24px; /* 스케일 압축률에 맞춰 내부 곡률 두 배 확장 */
     overflow: hidden;
+    transform-origin: top left;
+    transform: scale(0.5);
   }
 </style>
 </head>
@@ -118,7 +133,7 @@
 
 <header>
   <h1>p5.js Creative Visual Portfolio</h1>
-  <p>컴퓨터학부 | 학번: 20253434 | 이름: 윤수인</p>
+  <p>컴퓨터공학전공 | 학번: 202XXXXX | 이름: 윤수인</p>
 </header>
 
 <main id="projects">
