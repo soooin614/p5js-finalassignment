@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>p5.js Interactive Portfolio</title>
 <style>
-  /* 전체 여백 초기화 */
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;500;700&display=swap');
+
   * {
     margin: 0;
     padding: 0;
@@ -17,9 +18,7 @@
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    
-    /* 1. 격자 제거 후 깊이감 있는 우주/별빛 감성 배경 적용 */
+    font-family: 'Noto Serif KR', 'Chosunilbo_myungjo', 'Batang', serif;
     background-color: #0b0c10;
     background-image: 
       radial-gradient(circle at 20% 30%, rgba(124, 58, 237, 0.08) 0%, transparent 40%),
@@ -34,31 +33,29 @@
     padding: 60px 20px;
   }
 
-  /* 상단 헤더 영역 */
   header {
     text-align: center;
     margin-bottom: 50px;
   }
 
   header h1 {
-    font-size: 2.6rem;
-    font-weight: 800;
-    letter-spacing: -1px;
-    background: linear-gradient(45deg, #c084fc, #f472b6);
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background: linear-gradient(45deg, #cbd5e1, #f472b6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
   }
 
-  /* 2. 인적사항 컬러를 더 밝게 수정 */
   header p {
-    font-size: 1.05rem;
-    color: #e5e7eb; /* 기존 회색에서 밝은 실버 화이트로 변경 */
-    letter-spacing: 0.5px;
-    font-weight: 500;
+    font-size: 1rem;
+    color: #e5e7eb;
+    letter-spacing: 1px;
+    font-weight: 300;
+    opacity: 0.85;
   }
 
-  /* 2행 2열 그리드 구조 (너비 확장) */
   #projects {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -68,9 +65,8 @@
     padding-bottom: 40px;
   }
 
-  /* 3. 작품 카드 디자인 (떠오르는 효과 제거 및 네온 테두리 적용) */
   .project-card {
-    background: rgba(22, 28, 45, 0.6); /* 반투명한 딥 네이비 유리 톤 */
+    background: rgba(22, 28, 45, 0.6);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -79,35 +75,32 @@
     transition: all 0.3s ease;
   }
 
-  /* 마우스 호버 시: 움직이지 않고 테두리만 은은하게 빛남 */
   .project-card:hover {
     border-color: rgba(192, 132, 252, 0.5);
     box-shadow: 0 0 25px rgba(124, 58, 237, 0.2);
   }
 
-  /* 카드 상단 헤더 (배지 제거로 깔끔하게 제목만 배치) */
   .card-header {
     margin-bottom: 16px;
   }
 
   .project-card h3 {
-    font-size: 1.15rem;
-    font-weight: 600;
+    font-size: 1.1rem;
+    font-weight: 500;
     color: #f3f4f6;
+    letter-spacing: 0.5px;
   }
 
-  /* 4. 스크롤바 방지를 위해 overflow: hidden 처리 및 크기 밸런스 조정 */
   .cell {
     width: 100%;
     aspect-ratio: 16 / 9;
     position: relative;
-    overflow: hidden; /* 내부 스크롤바 강제 숨김 처리 */
+    overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 12px;
     background: #000000;
   }
 
-  /* iframe이 스크롤바를 만들지 못하도록 영역 100% 제한 및 압축 */
   .cell iframe {
     position: absolute;
     top: 0;
@@ -115,7 +108,7 @@
     width: 200%;
     height: 200%;
     border: none;
-    overflow: hidden; /* iframe 내부 스크롤바 제거 */
+    overflow: hidden;
     transform-origin: top left;
     transform: scale(0.5);
   }
@@ -125,14 +118,14 @@
 
 <header>
   <h1>p5.js Creative Visual Portfolio</h1>
-  <p>컴퓨터공학전공 | 학번: 202XXXXX | 이름: 윤수인</p>
+  <p>컴퓨터학부 | 학번: 20253434 | 이름: 윤수인</p>
 </header>
 
 <main id="projects">
   
   <div class="project-card">
     <div class="card-header">
-      <h3>Project 01. 도형 디자인</h3>
+      <h3>Project 01. 추상화 그리기</h3>
     </div>
     <div class="cell">
       <iframe src="sample1/index.html" scrolling="no"></iframe>
@@ -141,7 +134,7 @@
 
   <div class="project-card">
     <div class="card-header">
-      <h3>Project 04. 인터랙티브 무브</h3>
+      <h3>Project 04. 추상화에 움직임 부여하기</h3>
     </div>
     <div class="cell">
       <iframe src="sample4/index.html" scrolling="no"></iframe>
@@ -150,7 +143,7 @@
 
   <div class="project-card">
     <div class="card-header">
-      <h3>Project 02. 패턴 플레이</h3>
+      <h3>Project 02. 캐릭터 그리기</h3>
     </div>
     <div class="cell">
       <iframe src="sample2/index.html" scrolling="no"></iframe>
@@ -159,7 +152,7 @@
 
   <div class="project-card">
     <div class="card-header">
-      <h3>Project 03. 동적 캔버스</h3>
+      <h3>Project 03. 캐릭터에 움직임 부여하기</h3>
     </div>
     <div class="cell">
       <iframe src="sample3/index.html" scrolling="no"></iframe>
