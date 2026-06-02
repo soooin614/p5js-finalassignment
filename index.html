@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>p5.js Interactive Portfolio</title>
 <style>
-  /* 기본 여백 리셋 및 폰트 설정 */
+  /* 전체 여백 초기화 */
   * {
     margin: 0;
     padding: 0;
@@ -19,18 +19,22 @@
     min-height: 100vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     
-    /* 1. 웹사이트 전체 배경: 딥 다크 퍼플 그라데이션 + 미세 격자 무늬 (심미성 치트키) */
-    background-color: #0d0e15;
+    /* 1. 격자 제거 후 깊이감 있는 우주/별빛 감성 배경 적용 */
+    background-color: #0b0c10;
     background-image: 
-      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-      radial-gradient(circle at 50% 0%, #1e1b4b 0%, #0d0e15 70%);
-    background-size: 20px 20px, 20px 20px, 100% 100%;
+      radial-gradient(circle at 20% 30%, rgba(124, 58, 237, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(244, 114, 182, 0.06) 0%, transparent 40%),
+      radial-gradient(1px 1px at 10% 20%, #ffffff 100%, transparent),
+      radial-gradient(1.5px 1.5px at 40% 70%, #ffffff 100%, transparent),
+      radial-gradient(1px 1px at 70% 40%, rgba(255, 255, 255, 0.8) 100%, transparent),
+      radial-gradient(2px 2px at 85% 15%, #ffffff 100%, transparent),
+      radial-gradient(1px 1px at 30% 90%, rgba(255, 255, 255, 0.5) 100%, transparent);
+    background-size: 100% 100%, 100% 100%, 200px 200px, 300px 300px, 250px 250px, 400px 400px, 150px 150px;
     color: #ffffff;
     padding: 60px 20px;
   }
 
-  /* 2. 상단 네온 타이틀 헤더 */
+  /* 상단 헤더 영역 */
   header {
     text-align: center;
     margin-bottom: 50px;
@@ -40,54 +44,49 @@
     font-size: 2.6rem;
     font-weight: 800;
     letter-spacing: -1px;
-    background: linear-gradient(45deg, #a78bfa, #f472b6);
+    background: linear-gradient(45deg, #c084fc, #f472b6);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; /* 글자에 그라데이션 채우기 */
+    -webkit-text-fill-color: transparent;
     margin-bottom: 12px;
   }
 
+  /* 2. 인적사항 컬러를 더 밝게 수정 */
   header p {
     font-size: 1.05rem;
-    color: #9ca3af;
+    color: #e5e7eb; /* 기존 회색에서 밝은 실버 화이트로 변경 */
     letter-spacing: 0.5px;
+    font-weight: 500;
   }
 
-  /* 2행 2열 그리드 구조 설정 (너비 780px로 여유롭게 최적화) */
+  /* 2행 2열 그리드 구조 (너비 확장) */
   #projects {
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 100%;
-    max-width: 780px;
+    max-width: 840px;
     gap: 32px;
     padding-bottom: 40px;
   }
 
-  /* 3. 작품 주변을 꾸미는 글래스모피즘 + 네온 호버 카드 */
+  /* 3. 작품 카드 디자인 (떠오르는 효과 제거 및 네온 테두리 적용) */
   .project-card {
-    background: rgba(30, 41, 59, 0.4); /* 반투명한 어두운 유리 느낌 */
-    backdrop-filter: blur(8px); /* 뒤쪽 배경 살짝 흐리게 처리 */
-    -webkit-backdrop-filter: blur(8px);
+    background: rgba(22, 28, 45, 0.6); /* 반투명한 딥 네이비 유리 톤 */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 20px;
     padding: 24px;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* 부드럽고 쫀득한 애니메이션 */
+    transition: all 0.3s ease;
   }
 
-  /* 마우스 호버 시: 네온 광채(Glow)가 퍼지며 카드가 스르륵 올라옴 */
+  /* 마우스 호버 시: 움직이지 않고 테두리만 은은하게 빛남 */
   .project-card:hover {
-    transform: translateY(-8px);
-    border-color: rgba(167, 139, 250, 0.4);
-    box-shadow: 
-      0 0 1px rgba(167, 139, 250, 0.5),
-      0 10px 30px rgba(124, 58, 237, 0.25),
-      0 0 40px rgba(244, 114, 182, 0.1);
+    border-color: rgba(192, 132, 252, 0.5);
+    box-shadow: 0 0 25px rgba(124, 58, 237, 0.2);
   }
 
-  /* 카드 헤더 (제목 및 배지 정렬) */
+  /* 카드 상단 헤더 (배지 제거로 깔끔하게 제목만 배치) */
   .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     margin-bottom: 16px;
   }
 
@@ -97,47 +96,28 @@
     color: #f3f4f6;
   }
 
-  /* 4. 글로우 효과가 추가된 배지 스타일 */
-  .badge {
-    font-size: 0.75rem;
-    padding: 4px 10px;
-    border-radius: 9999px;
-    font-weight: bold;
-    letter-spacing: 0.5px;
-  }
-  .badge-static { 
-    background-color: rgba(239, 68, 68, 0.15); 
-    color: #f87171; 
-    border: 1px solid rgba(239, 68, 68, 0.2);
-    box-shadow: 0 0 8px rgba(239, 68, 68, 0.2);
-  }
-  .badge-dynamic { 
-    background-color: rgba(79, 70, 229, 0.2); 
-    color: #818cf8; 
-    border: 1px solid rgba(79, 70, 229, 0.3);
-    box-shadow: 0 0 8px rgba(79, 70, 229, 0.2);
-  }
-
-  /* 5. 작품 창 크기 설정 (교수님 코드의 scale(0.5) 연산에 맞춰 16:9 꽉 차게 최적화) */
+  /* 4. 스크롤바 방지를 위해 overflow: hidden 처리 및 크기 밸런스 조정 */
   .cell {
+    width: 100%;
     aspect-ratio: 16 / 9;
     position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden; /* 내부 스크롤바 강제 숨김 처리 */
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 12px;
-    background: #000000; /* 작품이 돋보이도록 내부 배경은 블랙 처리 */
+    background: #000000;
   }
 
-  /* iframe 해상도 깨짐 방지 2배 압축 기법 */
+  /* iframe이 스크롤바를 만들지 못하도록 영역 100% 제한 및 압축 */
   .cell iframe {
     position: absolute;
     top: 0;
     left: 0;
-    width: 200%; /* 내부 캔버스를 원래보다 크기 확보한 뒤 */
+    width: 200%;
     height: 200%;
     border: none;
+    overflow: hidden; /* iframe 내부 스크롤바 제거 */
     transform-origin: top left;
-    transform: scale(0.5); /* 0.5배로 정밀하게 압축해서 배치 */
+    transform: scale(0.5);
   }
 </style>
 </head>
@@ -153,40 +133,36 @@
   <div class="project-card">
     <div class="card-header">
       <h3>Project 01. 도형 디자인</h3>
-      <span class="badge badge-static">정적 작품</span>
     </div>
     <div class="cell">
-      <iframe src="sample1/index.html"></iframe>
+      <iframe src="sample1/index.html" scrolling="no"></iframe>
     </div>
   </div>
 
   <div class="project-card">
     <div class="card-header">
       <h3>Project 04. 인터랙티브 무브</h3>
-      <span class="badge badge-dynamic">동적 작품</span>
     </div>
     <div class="cell">
-      <iframe src="sample4/index.html"></iframe>
+      <iframe src="sample4/index.html" scrolling="no"></iframe>
     </div>
   </div>
 
   <div class="project-card">
     <div class="card-header">
       <h3>Project 02. 패턴 플레이</h3>
-      <span class="badge badge-static">정적 작품</span>
     </div>
     <div class="cell">
-      <iframe src="sample2/index.html"></iframe>
+      <iframe src="sample2/index.html" scrolling="no"></iframe>
     </div>
   </div>
 
   <div class="project-card">
     <div class="card-header">
       <h3>Project 03. 동적 캔버스</h3>
-      <span class="badge badge-dynamic">동적 작품</span>
     </div>
     <div class="cell">
-      <iframe src="sample3/index.html"></iframe>
+      <iframe src="sample3/index.html" scrolling="no"></iframe>
     </div>
   </div>
 
